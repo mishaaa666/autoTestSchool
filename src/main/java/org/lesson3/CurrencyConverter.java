@@ -1,10 +1,8 @@
 package org.lesson3;
 
-import java.util.Scanner;
-
 public class CurrencyConverter {
-    private double commission;
-    private double exchangeRate;
+    private final double commission;
+    private final double exchangeRate;
 
     public CurrencyConverter(double commission, double exchangeRate) {
         this.commission = commission;
