@@ -32,33 +32,11 @@ public class WebApiTests {
         return Arrays.copyOfRange(array, 0, limit);
     }
 
-    @Test
-    public void imdbTop100ChartTest() throws IOException {
-        for (MovieInfo movie : imdbApi.getTop100Films()) {
-            System.out.println("Title: " + movie.title());
-            System.out.println("Link: " + movie.link());
-            System.out.println("Year: " + movie.year());
-            System.out.println("Rating: " + movie.rating());
-            System.out.println();
-        }
-    }
-
-    @Test
-    public void imdbDetailPageTest() throws IOException {
-        var movieInfo = imdbApi.getMovieInfoByUrl("/title/tt0068646");
-        System.out.println("Title: " + movieInfo.title());
-        System.out.println("Link: " + movieInfo.link());
-        System.out.println("Year: " + movieInfo.year());
-        System.out.println("Rating: " + movieInfo.rating());
-        System.out.println();
-
-    }
-
     @Test(dataProvider = "moviesListDataProvider")
     public void validateTopChartPage(MovieInfo movieInfo) throws IOException {
-        var movieInfoFromDetail = imdbApi.getMovieInfoByUrl(movieInfo.link());
-        Assert.assertTrue(movieInfo.title().contains(movieInfoFromDetail.title()));
-        Assert.assertEquals(movieInfo.year(), movieInfoFromDetail.year());
-        Assert.assertEquals(movieInfo.rating(), movieInfoFromDetail.rating());
+        var movieInfoFromDetail = imdbApi.getMovieInfoByUrl(movieInfo.getLink());
+        Assert.assertTrue(movieInfo.getTitle().contains(movieInfoFromDetail.getTitle()));
+        Assert.assertEquals(movieInfo.getYear(), movieInfoFromDetail.getYear());
+        Assert.assertEquals(movieInfo.getRating(), movieInfoFromDetail.getRating());
     }
 }

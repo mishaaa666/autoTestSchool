@@ -14,6 +14,7 @@ public class ImdbApi {
     public final ImdbRestClient client = new ImdbRestClient();
 
     public ResponseBody getTopChartResponse() throws IOException {
+
         return client.imdbServiceInterface.getTopChart().execute().body();
     }
 
