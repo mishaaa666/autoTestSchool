@@ -36,13 +36,7 @@ public class ProductElement {
         return $(".inventory_list > .inventory_item:nth-child(" + this.id + ") .btn_inventory");
     }
 
-    public void addToCart(){
-        getAddToCartButton().shouldBe(visible);
-        getAddToCartButton().click();
+    public void addToCart() {
+        getAddToCartButton().shouldBe(visible).click();
     }
-
-
-
-
-
 }

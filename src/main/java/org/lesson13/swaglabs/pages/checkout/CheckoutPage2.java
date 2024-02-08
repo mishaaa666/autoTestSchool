@@ -13,10 +13,8 @@ public class CheckoutPage2 {
     private static final SelenideElement ITEM_TOTAL = $(".summary_subtotal_label");
     private static final SelenideElement TAX = $(".summary_tax_label");
 
-    public CheckoutComplete finishCheckout() {
-        FINISH_BUTTON.shouldBe(visible);
-        FINISH_BUTTON.click();
-        return new CheckoutComplete();
+    public void finishCheckout() {
+        FINISH_BUTTON.shouldBe(visible).click();
     }
 
     private static double extractDouble(String input) {

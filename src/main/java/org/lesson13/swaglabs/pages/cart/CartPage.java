@@ -25,9 +25,7 @@ public class CartPage {
 
     public SelenideElement CHECKOUT_BUTTON = $(By.id("checkout"));
 
-    public CheckoutPage1 goToCheckout(){
-        CHECKOUT_BUTTON.shouldBe(visible);
-        CHECKOUT_BUTTON.click();
-        return new CheckoutPage1();
+    public void goToCheckout(){
+        CHECKOUT_BUTTON.shouldBe(visible).click();
     }
 }
