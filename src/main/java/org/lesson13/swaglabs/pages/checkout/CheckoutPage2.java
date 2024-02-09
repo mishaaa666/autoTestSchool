@@ -1,6 +1,7 @@
 package org.lesson13.swaglabs.pages.checkout;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,6 +14,7 @@ public class CheckoutPage2 {
     private static final SelenideElement ITEM_TOTAL = $(".summary_subtotal_label");
     private static final SelenideElement TAX = $(".summary_tax_label");
 
+    @Step("Finish checkout form")
     public void finishCheckout() {
         FINISH_BUTTON.shouldBe(visible).click();
     }

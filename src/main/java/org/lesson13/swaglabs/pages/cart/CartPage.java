@@ -1,6 +1,7 @@
 package org.lesson13.swaglabs.pages.cart;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.lesson13.swaglabs.pages.checkout.CheckoutPage1;
 import org.openqa.selenium.By;
 
@@ -25,6 +26,7 @@ public class CartPage {
 
     public SelenideElement CHECKOUT_BUTTON = $(By.id("checkout"));
 
+    @Step("Go to checkout page")
     public void goToCheckout(){
         CHECKOUT_BUTTON.shouldBe(visible).click();
     }

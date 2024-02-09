@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+@Test()
 public class WebApiTests {
     private final ImdbApi imdbApi = new ImdbApi();
 

@@ -1,6 +1,7 @@
 package org.lesson13.swaglabs.pages.home;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 
 import java.util.ArrayList;
 
@@ -25,6 +26,7 @@ public class HomePage {
         return productElements;
     }
 
+    @Step("Go to cart")
     public void goToCart() {
         GO_TO_CART_BUTTON.shouldBe(visible).click();
     }

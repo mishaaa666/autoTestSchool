@@ -4,6 +4,7 @@ package org.lesson10.tests;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
+import io.qameta.allure.Step;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
@@ -15,6 +16,7 @@ import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
+@Test(groups = "all")
 public class TestTrello {
     private static final SelenideElement LOGIN_BUTTON = $(byText("Log in"));
     private static final SelenideElement LOGIN_FIELD = $(byId("username"));
@@ -55,6 +57,7 @@ public class TestTrello {
     }
 
     @BeforeSuite
+    @Step("Set up configuration")
     public static void setUp() {
         Configuration.baseUrl = "https://trello.com/";
         Configuration.browserSize = "1920x1080";
@@ -62,6 +65,7 @@ public class TestTrello {
     }
 
     @Test()
+    @Step("Go to dashboard")
     void goToDashboard() {
         WORKSPACES_TITLE.should(visible, Duration.ofSeconds(15));
         DASHBOARD_BUTTON.shouldBe(visible).click();
@@ -70,6 +74,7 @@ public class TestTrello {
 
 
     @Test(dependsOnMethods = "goToDashboard")
+    @Step("Create a task")
     void createTask() {
         ADD_A_CARD_BUTTON.click();
         CARD_TITLE_FIELD.sendKeys("Test Name");
@@ -78,6 +83,7 @@ public class TestTrello {
     }
 
     @Test(dependsOnMethods = "createTask")
+    @Step("Add description to task")
     void addDescriptionToTask() {
         sleep(1000);
         EDIT_TEST_CARD.shouldBe(visible).click();
@@ -91,6 +97,7 @@ public class TestTrello {
     }
 
     @Test(dependsOnMethods = "addDescriptionToTask")
+    @Step("Add comment to task")
     void addCommentToTask() {
 
         COMMENT_INPUT.shouldBe(visible).click();
@@ -100,6 +107,7 @@ public class TestTrello {
     }
 
     @Test(dependsOnMethods = "addCommentToTask")
+    @Step("Delete task")
     void deleteTask() {
         ARCHIVE_CARD_BUTTON.click();
         DELETE_CARD_BUTTON.click();

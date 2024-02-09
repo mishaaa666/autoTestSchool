@@ -1,6 +1,10 @@
 package org.lesson13.swaglabs.test;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.Step;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.lesson13.swaglabs.pages.LoginPage;
 import org.lesson13.swaglabs.pages.cart.CartElement;
 import org.lesson13.swaglabs.pages.cart.CartPage;
@@ -17,7 +21,7 @@ import java.util.ArrayList;
 
 import static com.codeborne.selenide.Selenide.open;
 
-
+@Test(groups = "all")
 public class LoginTest {
     private LoginPage loginPage = new LoginPage();
     private HomePage homePage = new HomePage();
@@ -27,6 +31,7 @@ public class LoginTest {
     private CheckoutComplete checkoutComplete = new CheckoutComplete();
     private ArrayList<String> cartProducts = new ArrayList<>();
 
+    @Step("Add products to cart")
     public void addProductsToCart() {
         double price1 = 7.99;
         double price2 = 9.99;
@@ -52,6 +57,7 @@ public class LoginTest {
         Configuration.baseUrl = "https://www.saucedemo.com/";
         Configuration.browserSize = "1920x1080";
         open("");
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(true));
     }
 
     @Test
